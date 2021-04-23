@@ -1,0 +1,10 @@
+<div class="container">
+<h1> <%=pluralize(@users.size ,"User")%></h1>
+  <%@users.each do |user|%>
+    <div class="d-flex my-2">
+        <div class="pe-4"><%=link_to user.name, user%></div>
+        <div class="pe-4"><%=user.email%></div>
+        <div class=""> Created: <%=time_ago_in_words(user.created_at)%> ago</div>
+    </div>
+  <%end%>
+</div>

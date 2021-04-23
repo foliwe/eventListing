@@ -48,3 +48,13 @@ end
      how_heard: HOW_HEARD_OPTIONS.sample
     )
 end
+
+
+4.times do
+  User.create!(
+    name:Faker::Name.name,
+    email:Faker::Internet.safe_email,
+    password: "123456",
+    password_confirmation: "123456",
+  )
+end
