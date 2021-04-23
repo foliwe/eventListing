@@ -17,11 +17,13 @@ before_action :set_event_id
   def create
 
     @registration = @event.registrations.new(registration_params)
-    if @registration.save
-      redirect_to @event, notice: "You are Now Register For the event"
-    else
-      render :new
-    end
+     @registration.user = current_user
+      if @registration.save
+        redirect_to event_registrations_path(@event), notice: "You are Now Register For the event"
+      else
+        render :new
+      end
+ 
 
   end
 
@@ -33,7 +35,7 @@ before_action :set_event_id
   end
 
   def registration_params
-    params.require(:registration).permit(:name, :email, :how_heard, :event_id)
+    params.require(:registration).permit(:how_heard, :event_id, :user_id)
   end
 
  

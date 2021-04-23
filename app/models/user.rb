@@ -4,5 +4,7 @@ class User < ApplicationRecord
   validates :name , presence: true
   validates :email, format: {with: /\S+@\S/},
                             uniqueness: {case_senitive: false}
+
+  has_many :registrations, dependent: :destroy
                             
 end

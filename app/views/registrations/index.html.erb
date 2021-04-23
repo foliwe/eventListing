@@ -3,7 +3,7 @@
 
   <%@registration.each do |reg|%>
   <ul>
-      <li><%=reg.name%> &bull; <%=reg.how_heard%></li>
+      <li><%= link_to reg.user.name, user_path(reg.user)%> &bull; <%=reg.how_heard%></li>
   </ul>
   <%end%>
 </div>

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def show
     
+    @registrations = @user.registrations
   end
 
   def create
