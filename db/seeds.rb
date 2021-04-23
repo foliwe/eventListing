@@ -55,6 +55,15 @@ end
     name:Faker::Name.name,
     email:Faker::Internet.safe_email,
     password: "123456",
+    admin: 0,
     password_confirmation: "123456",
   )
 end
+ 
+    User.create!(
+      name: "Foliwe Fossung",
+      email: "foliwe@example.com",
+      admin: 1,
+      password: "123456",
+      password_confirmation: "123456",
+    )

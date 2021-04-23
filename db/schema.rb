@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 2021_04_23_025422) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.decimal "price", default: "0.0"
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
     t.text "description"
-    t.integer "capacity", default: 0
+    t.integer "capacity", default: 1
     t.datetime "starts_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_04_23_025422) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

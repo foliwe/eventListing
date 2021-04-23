@@ -1,5 +1,7 @@
 class RegistrationsController < ApplicationController
+before_action :authenticate_user , except: [:index]
 before_action :set_event_id
+#before_action :no_duplicate
   def index
     @registration = @event.registrations
   end
@@ -33,4 +35,6 @@ before_action :set_event_id
   def registration_params
     params.require(:registration).permit(:name, :email, :how_heard, :event_id)
   end
+
+ 
 end
