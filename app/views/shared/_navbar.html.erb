@@ -6,9 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-        <%=link_to "New Event", new_event_path,class:"nav-link active"%>
-        </li>
+      <% if current_user%>
+          <li class="nav-item">
+          <%=link_to "New Event", new_event_path,class:"nav-link active"%>
+          </li>
+        <%end%>
         <li class="nav-item">
           <%=link_to "All Event", events_path,class:"nav-link"%>
         </li>
@@ -18,12 +20,21 @@
         
       </ul>
       <ul class="navbar-nav me-0">
-          <li class="nav-item">
-          <%=link_to "Signup", signup_path,class:"nav-link"%>
+      <%if current_user%>
+        <li class="nav-item">
+         <%=link_to current_user.name, current_user ,class:"nav-link"%>
+        </li>
+         <li class="nav-item">
+          <%=link_to 'LOGOUT', session_path,method: :delete,class:"nav-link"%>
+        </li>
+        <%else%>
+        <li class="nav-item">
+          <%=link_to "SIGN UP", signup_path,class:"nav-link"%>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+         <%=link_to "SIGN IN", new_session_path,class:"nav-link"%>
         </li>
+      <%end%>
       </ul>
     </div>
   </div>

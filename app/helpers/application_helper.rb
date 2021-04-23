@@ -1,5 +1,6 @@
 module ApplicationHelper
 
+
   def price(event)
     if event.free?
       "Free"

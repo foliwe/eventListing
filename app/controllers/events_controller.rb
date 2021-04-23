@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-
+  before_action :authenticate_user , except: [:index, :show]
+  before_action :verify_ower, except:[:index, :show, :new, :create]
   before_action :set_events, only: [:show, :edit, :update, :destroy]
   def index
     @events = Event.upcoming_events
@@ -47,7 +48,19 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def verify_ower
+    if current_user && current_user.id != @event.id 
+      redirect_to root_path alert: "Access denial! "
+    end
+  end
+
   def event_params
     params.require(:event).permit(:name, :location, :description, :price, :starts_at, :capacity)
+  end
+
+  def verify_ower
+    unless current_user == @event.user
+      redirect_to events_path , alert: "Verify Users Only"
+    end
   end
 end
