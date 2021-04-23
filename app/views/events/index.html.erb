@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+      <%@events.each do |event|%>
+      <div class="col-3 my-3">
+      <%=link_to event do%>
+        <div class="card">
+          <div class="card-body bg-light">
+            <h5 class="card-title"><%=event.name%></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%=event.location%></h6>
+            <p class="card-text"> <%=event.description%> </p>
+            <span class="card-link"><%=day_time(event)%></span>
+            <span class="card-link"> Price: <%= price(event)%></span>
+          </div>
+            <div class="card-footer d-flex justify-content-between">
+              <span>Number of Participants</span><span><%=event.registrations.size%></span>
+            </div>
+        </div>
+        <%end%>
+       </div>
+       <%end%>
+  </div>
+  
+

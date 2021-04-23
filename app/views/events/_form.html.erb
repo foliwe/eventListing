@@ -1,0 +1,42 @@
+ <%= form_with(model: event) do |f|%>
+
+    <%=render 'shared/errors', object: event%>
+
+  <div class="mb-3">
+
+    <%=f.label :name,"Event name",class:"form-label"%>
+    <%=f.text_field :name, class:"form-control"%>
+  </div>
+
+  <div class="mb-3">
+    <%=f.label :description,"Event Description",class:"form-label"%>
+    <%=f.text_area :description, class:"form-control"%>
+  </div>
+
+  <div class="mb-3">
+    <%=f.label :location,"Event Location",class:"form-label"%>
+    <%=f.text_field :location, class:"form-control"%>
+  </div>
+
+   <div class="mb-3">
+    <%=f.label :price,"Event Price",class:"form-label"%>
+    <%=f.number_field :price, class:"form-control"%>
+  </div>
+
+    <div class="mb-3">
+    <%=f.label :capacity,"Event Spots",class:"form-label"%>
+    <%=f.number_field :capacity, class:"form-control"%>
+  </div>
+  
+
+  <div class="mb-3">
+    <%=f.label :date_time,"Event Time",class:"form-label"%> <br>
+    <%=f.datetime_select :starts_at, {ampm: true},class:"datetime"%>
+  </div>
+
+  <div class="mb-3">
+    <%=f.submit class:"btn btn-primary"%>
+  </div>
+
+
+  <%end%>

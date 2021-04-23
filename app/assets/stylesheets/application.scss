@@ -1,0 +1,38 @@
+
+a{
+  text-decoration: none;
+  color: inherit;
+  &:hover{
+    color: inherit;
+  }
+}
+
+.datetime{
+  padding: 10px;
+select{
+  bottom: 1px solid #2c66a0;
+}
+}
+
+.field_with_errors{
+  color: #da1515;
+  .form-control{
+    border: 1px solid #da1515;
+  }
+}
+
+.errors{
+  padding: 5px;
+  background-color: #da1515;
+  color: #ffffff;
+  margin-bottom: 5px;
+
+  ul{
+    list-style: none;
+  }
+}
+
+.flash{
+  padding: 2px;
+}
+

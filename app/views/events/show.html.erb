@@ -1,0 +1,30 @@
+<div class="container my-5">
+  <h1><%= @event.name%></h1>
+      <strong>price:</strong> <span class="badge rounded-pill bg-success"><%=price(@event)%></span> <br>
+      <strong>Available Spots:</strong> <%=availability(@event)%>
+    <div class="my-2">
+      <%=@event.description%>
+    </div>
+   Location: <%=@event.location%> <br>
+   Start: <%=day_time(@event)%>
+
+  
+    <div class="my-2">
+      <%=event_sold_out(@event)%>
+    </div>
+  
+
+  <div class="my-2">
+    <%=link_to 'View All Registered Members', event_registrations_path(@event)%>
+  </div>
+
+   <div class="my-2 admin">
+    <%=link_to 'Edit Edit Details', edit_event_path(@event), class:"btn btn-secondary btn-sm"%>
+     <%=link_to 'Delete Event', event_path(@event), method: :delete, data:{confirm: "Are You Sure?"},class:"btn btn-danger btn-sm"%>
+   </div>
+
+   <div class="my-5">
+    <h1>Events Near By</h1>
+    
+   </div>
+</div>
