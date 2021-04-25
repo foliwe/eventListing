@@ -3,7 +3,16 @@ class EventsController < ApplicationController
   before_action :verify_admin, except:[:index, :show]
   before_action :set_events, only: [:show, :edit, :update, :destroy]
   def index
-    @events = Event.upcoming_events
+    case params[:filter] 
+    when "past"
+      @events = Event.past 
+    when "free"
+      @events = Event.free 
+    when "recent"
+      @events = Event.recent 
+    else
+      @events = Event.upcoming
+    end
   end
 
   def new
@@ -20,8 +29,12 @@ class EventsController < ApplicationController
   end
 
   def show
-    
-    @near_by = Event.events_close_by(@event.location).to_s
+    @likers =@event.likers
+    @near_by_events = Event.close_by(@event.location).excluding(@event)
+    @categories = @event.categories
+    if current_user
+      @like = current_user.likes.find_by(event_id: @event.id)
+    end
   end
 
    def edit
@@ -55,7 +68,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :location, :description, :price, :starts_at, :capacity)
+    params.require(:event).permit(:name, :location, :description, :price, :starts_at, :capacity, category_ids:[])
   end
 
 end

@@ -1,30 +1,79 @@
-<div class="container my-5">
-  <h1><%= @event.name%></h1>
+<div class="container my-5 d-flex bd-highlight">
+  <div class="bd-highlight">
+
+      <h1><%= @event.name%></h1>
+      <%if current_user%>
+        <div class="likes d-flex my-1">
+          <%=like_or_unlike(@like, @event)%>
+            <div class="px-2 bg-dark text-white">
+              <%=@likers.size%>
+            </div>
+        </div>
+      <%end%>
       <strong>price:</strong> <span class="badge rounded-pill bg-success"><%=price(@event)%></span> <br>
       <strong>Available Spots:</strong> <%=availability(@event)%>
-    <div class="my-2">
-      <%=@event.description%>
-    </div>
-   Location: <%=@event.location%> <br>
-   Start: <%=day_time(@event)%>
+      <div class="my-2">
+        <%=@event.description%>
+      </div>
+        Location: <%=@event.location%> <br>
+        Start: <%=day_time(@event)%>
 
   
-    <div class="my-2">
-      <%=event_sold_out(@event)%>
-    </div>
+      <div class="my-2">
+        <%=event_sold_out(@event)%>
+      </div>
   
 
-  <div class="my-2">
-    <%=link_to 'View All Registered Members', event_registrations_path(@event)%>
+        <div class="my-2">
+          <%=link_to 'View All Registered Members', event_registrations_path(@event)%>
+        </div>
+
+        <% if current_user_admin?%>
+          <div class="my-2 admin">
+            <%=link_to 'Edit Edit Details', edit_event_path(@event), class:"btn btn-secondary btn-sm"%>
+            <%=link_to 'Delete Event', event_path(@event), method: :delete, data:{confirm: "Are You Sure?"},class:"btn btn-danger btn-sm"%>
+          </div>
+        <%end%>
   </div>
-  <% if current_user_admin?%>
-    <div class="my-2 admin">
-      <%=link_to 'Edit Edit Details', edit_event_path(@event), class:"btn btn-secondary btn-sm"%>
-      <%=link_to 'Delete Event', event_path(@event), method: :delete, data:{confirm: "Are You Sure?"},class:"btn btn-danger btn-sm"%>
+
+  <div class="bd-highlight ms-4">
+    <%if @likers.present?%>
+      <h4>Follwers</h4>
+      <ul class="list-group">
+      <%@likers.each do |user|%>
+      <li class="list-group-item">
+          <%=link_to user.name,(user)%>
+      </li>
+      <%end%>
+      </ul>
+    <%end%>
+
+    <div class="my-4">
+      <% if @categories.present?%>
+        <h5>Categories</h5>
+        <ul class="list-group">
+        <%@categories.each do |category| %>
+          <li class="list-group-item">
+            <%=category.name%>
+          </li>
+          <%end%>
+        </ul>
+      <%end%>
     </div>
-  <%end%>
+
+  </div>
+
+</div> 
+
+<div class="container">
+
    <div class="my-5">
     <h1>Events Near By</h1>
-    
+      <ul>
+    <%@near_by_events.each do |event|%>
+        <li><%= link_to event.name, event %></li>
+    <%end%>
+      </ul>
    </div>
 </div>
+

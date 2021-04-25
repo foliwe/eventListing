@@ -8,9 +8,13 @@ class Event < ApplicationRecord
 
   has_many :registrations, dependent: :destroy
 
-  # def self.upcoming_events
-  #   where("starts_at > ?", Time.now).order("starts_at")
-  # end
+  has_many :event_categories
+  has_many :categories , through: :event_categories
+
+  has_many :likes, dependent: :destroy
+  has_many :likers, through: :likes ,source: :user
+
+
   def free?
     price == 0 || price == ''
   end
@@ -23,6 +27,11 @@ class Event < ApplicationRecord
     (capacity - registrations.size).zero?
   end
 
- scope :upcoming_events, -> {where("starts_at > ?", Time.now).order("starts_at")}
- scope :events_close_by, -> (current_event){where("location == ?",(current_event)).order("starts_at")}
+# Scopes
+ scope :upcoming, -> {where("starts_at > ?", Time.now).order("starts_at")}
+ scope :free, -> {upcoming.where(price: 0 ).order("name")}
+ scope :past, -> {where("starts_at < ?", Time.now).order("starts_at desc")}
+ scope :recent, -> (max=3){past.limit(max).order("starts_at")}
+ scope :close_by, -> (similar_events){where("location = ?",(similar_events)).order("starts_at")}
+ 
 end

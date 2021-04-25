@@ -34,6 +34,18 @@
     <%=f.datetime_select :starts_at, {ampm: true},class:"datetime"%>
   </div>
 
+  <div class=" mb-3">
+    <%=f.label :categories,class:"form-label"%> <br>
+     <%=f.collection_check_boxes :category_ids, Category.all, :id, :name do |b|%> 
+        <div class="form-check ">
+          <%=b.label class: "form-check-label" do %> 
+            <%=b.check_box class:"form-check-input"%>
+            <%=b.text%>
+          <%end%>
+        </div>
+     <%end%>
+  </div>
+
   <div class="mb-3">
     <%=f.submit class:"btn btn-primary"%>
   </div>

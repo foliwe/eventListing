@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+    @liked_events = @user.liked_events
     @registrations = @user.registrations
   end
 

@@ -40,14 +40,14 @@ end
     )
 end
 
-20.times do 
-  Registration.create!(
-     name:Faker::Name.name,
-     email:Faker::Internet.safe_email,
-     event_id: rand(1..14),
-     how_heard: HOW_HEARD_OPTIONS.sample
-    )
-end
+# 20.times do 
+#   Registration.create!(
+#      name:Faker::Name.name,
+#      email:Faker::Internet.safe_email,
+#      event_id: rand(1..14),
+#      how_heard: HOW_HEARD_OPTIONS.sample
+#     )
+# end
 
 
 4.times do
@@ -64,6 +64,20 @@ end
       name: "Foliwe Fossung",
       email: "foliwe@example.com",
       admin: 1,
+      password: "123456",
+      password_confirmation: "123456",
+    )
+
+    User.create!(
+      name: "Patrick Fossung",
+      email: "patrick@example.com",
+      password: "123456",
+      password_confirmation: "123456",
+    )
+
+    User.create!(
+      name: "Akuma Fossung",
+      email: "akuma@example.com",
       password: "123456",
       password_confirmation: "123456",
     )
