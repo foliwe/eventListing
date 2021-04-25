@@ -31,7 +31,7 @@ before_action :set_event_id
   private
 
   def set_event_id
-    @event = Event.find(params[:event_id])
+    @event = Event.friendly.find(params[:event_id])
   end
 
   def registration_params

@@ -53,11 +53,11 @@ end
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def verify_ower
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
       redirect_to events_path unless current_user?(@user)
   end
 end

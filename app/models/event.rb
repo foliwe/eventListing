@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   validates :location, length: { minimum: 5, maximum: 100}
   validates :description, length: { minimum: 10, maximum: 600 }
   validates :price , presence: true
