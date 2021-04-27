@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :likes
     resources :registrations
   end
+  resources :contacts, only: [:new, :create]
   root to: 'events#index'
   get 'events/filter/:filter', to: 'events#index',as: :filter
   resources :users

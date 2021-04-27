@@ -11,7 +11,8 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
- gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+gem 'mail_form'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
