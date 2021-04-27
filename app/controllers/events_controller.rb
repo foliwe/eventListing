@@ -31,7 +31,6 @@ class EventsController < ApplicationController
   def show
     @likers =@event.likers
     @near_by_events = Event.close_by(@event.location).excluding(@event)
-    @categories = @event.categories
     if current_user
       @like = current_user.likes.find_by(event_id: @event.id)
     end

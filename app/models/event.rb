@@ -27,14 +27,17 @@ class Event < ApplicationRecord
    end
 
   def sold_out
-    (capacity - registrations.size).zero?
+    (capacity - registrations.size).zero? || registrations.map(&:user_id ).include?(likers)
   end
+
+  
+ 
 
 # Scopes
  scope :upcoming, -> {where("starts_at > ?", Time.now).order("starts_at")}
  scope :free, -> {upcoming.where(price: 0 ).order("name")}
  scope :past, -> {where("starts_at < ?", Time.now).order("starts_at desc")}
  scope :recent, -> (max=3){past.limit(max).order("starts_at")}
- scope :close_by, -> (similar_events){where("location = ?",(similar_events)).order("starts_at")}
+ scope :close_by, -> (similar_events){upcoming.where("location = ?",(similar_events)).order("starts_at")}
  
 end

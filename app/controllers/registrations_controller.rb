@@ -15,9 +15,8 @@ before_action :set_event_id
   end
 
   def create
-
     @registration = @event.registrations.new(registration_params)
-     @registration.user = current_user
+    @registration.user = current_user
       if @registration.save
         redirect_to event_registrations_path(@event), notice: "You are Now Register For the event"
       else

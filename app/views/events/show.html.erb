@@ -20,9 +20,10 @@
 
   
       <div class="my-2">
-        <%=event_sold_out(@event)%>
+        <%=event_sold_out(@event, current_user)%>
       </div>
-  
+
+         
 
         <div class="my-2">
           <%=link_to 'View All Registered Members', event_registrations_path(@event)%>
